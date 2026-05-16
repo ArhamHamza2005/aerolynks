@@ -34,12 +34,40 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    // Reset form after 3 seconds
-    setTimeout(() => {
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  setSubmitted(false);
+
+  const formDataToSend = new FormData();
+
+  formDataToSend.append(
+    "access_key",
+    "e7276306-5e69-4e43-b578-7613073179f5"
+  );
+
+  formDataToSend.append("name", formData.name);
+  formDataToSend.append("email", formData.email);
+  formDataToSend.append("phone", formData.phone);
+  formDataToSend.append("company", formData.company);
+  formDataToSend.append("industry", formData.industry);
+  formDataToSend.append("projectType", formData.projectType);
+  formDataToSend.append("message", formData.message);
+
+  try {
+    const response = await fetch(
+      "https://api.web3forms.com/submit",
+      {
+        method: "POST",
+        body: formDataToSend,
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.success) {
+      setSubmitted(true);
+
       setFormData({
         name: '',
         email: '',
@@ -49,9 +77,18 @@ export default function ContactPage() {
         projectType: '',
         message: '',
       });
-      setSubmitted(false);
-    }, 3000);
-  };
+
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
+    } else {
+      alert("Something went wrong!");
+    }
+  } catch (error) {
+    console.log(error);
+    alert("Failed to send message");
+  }
+};
 
   return (
     <main className="min-h-screen bg-background">
@@ -89,7 +126,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-sm font-semibold text-foreground">Email</p>
                   <a href="mailto:hello@aerolynks.com" className="text-foreground/70 hover:text-accent transition-colors">
-                    hello@aerolynks.com
+                   contact.aerolynks@gmail.com
                   </a>
                 </div>
               </div>
@@ -102,8 +139,8 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">Phone</p>
-                  <a href="tel:+1234567890" className="text-foreground/70 hover:text-accent transition-colors">
-                    +1 (234) 567-890
+                  <a href="tel:+923238010533" className="text-foreground/70 hover:text-accent transition-colors">
+                   +92-323-8010533
                   </a>
                 </div>
               </div>
@@ -117,8 +154,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-sm font-semibold text-foreground">Location</p>
                   <p className="text-foreground/70">
-                    123 Tech Street<br />
-                    San Francisco, CA 94105
+                    Karachi - Pakistan
                   </p>
                 </div>
               </div>
