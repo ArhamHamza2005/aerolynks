@@ -276,9 +276,9 @@ export default function Home() {
   ];
 
   const stats = [
-    { value: "10+", label: "Happy Clients" },
-    { value: "5+", label: "Projects Completed" },
-    { value: "2+", label: "Years Experience" },
+    { value: "8+", label: "Happy Clients" },
+    { value: "3+", label: "Projects Completed" },
+    { value: "1+", label: "Years Experience" },
     { value: "25+", label: "Countries Served" },
   ];
 

@@ -2,10 +2,10 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Linkedin, Twitter, Github } from 'lucide-react';
+import { Linkedin, Twitter, Github, Instagram, Facebook } from 'lucide-react';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = 2025;
 
   return (
     <footer className="bg-card border-t border-border mt-20">
@@ -71,26 +71,26 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Follow Us</h4>
             <div className="flex gap-4">
-              <a
-                href="#"
+              <a target='_blank'
+                href="https://www.linkedin.com/company/aerolynks-venture"
                 className="text-foreground/70 hover:text-accent transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin size={20} />
               </a>
-              <a
-                href="#"
+              <a target='_blank'
+                href="https://www.instagram.com/aerolynks_venture"
                 className="text-foreground/70 hover:text-accent transition-colors"
-                aria-label="Twitter"
+                aria-label="Instagram"
               >
-                <Twitter size={20} />
+                <Instagram size={20} />
               </a>
-              <a
-                href="#"
+              <a target='_blank'
+                href="https://www.facebook.com/profile.php?id=61589828883725"
                 className="text-foreground/70 hover:text-accent transition-colors"
-                aria-label="GitHub"
+                aria-label="Facebook"
               >
-                <Github size={20} />
+                <Facebook size={20} />
               </a>
             </div>
           </div>
